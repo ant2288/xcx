@@ -1,2 +1,45 @@
 <!--page/market/market.wxml-->
-<text>page/market/market.wxml</text>
+<view class='content'>
+  <view class="serarch-content">
+      <image src="/image/search-pic.png" class="search-icon" />
+      <input placeholder="请输入搜索内容" class="search-input" maxlength="30" confirm-type="搜索" bindinput='listenerSearchInput' bindconfirm='toSearch'>
+      </input>
+      <button class='search-btn' bindtap="toSearch">搜索
+      </button>
+    </view>
+
+    <!--分类-->
+    <view class="type-container">
+        <scroll-view class="type-navbar" scroll-x="true">
+            <view class="type-box" wx:for-items="{{categories}}" wx:key="id">
+                <view id="{{item.id}}" class="type-navbar-item {{activeCategoryId == item.id ? 'type-item-on' : ''}}" bindtap="tabClick">
+                    {{item.name}}
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+
+   <view class="coupons" >
+        <scroll-view class="coupons-scroll">
+            <view class="coupons-item">
+               <view style="font-size: 70rpx;position: absolute;top: 70rpx;left:35rpx" bindtap='addItem'> 发布交易 </view> 
+            </view>
+            <view class="coupons-item" bindtap="gitCoupon">
+               <view style="font-size: 70rpx;position: absolute;top: 70rpx;left:415rpx"> 交易管理 </view> 
+            </view>
+        </scroll-view>
+    </view>
+
+     <view class="goods-container">
+        <view class="goods-box" wx:for-items="{{goods}}" wx:key="{{index}}" bindtap="toDetailsTap" data-id="{{item.id}}">
+           <view class="img-box">
+              <image src="{{item.pic}}_m" class="image" mode="aspectFill" lazy-load="true"/>
+           </view>
+           <view class="goods-title">{{item.name}}</view>
+           <view style='display:flex;'>
+            <view class="goods-price">¥ {{item.minPrice}}</view>
+            <view wx:if="{{item.originalPrice && item.originalPrice > 0}}" class="goods-price" style='color:#aaa;text-decoration:line-through'>¥ {{item.originalPrice}}</view>
+           </view>
+        </view>
+    </view>
+</view>

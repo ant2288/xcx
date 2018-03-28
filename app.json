@@ -6,8 +6,8 @@
     "page/index",
     "page/market/market",
     "page/infosetting/infosetting",
-    "page/error/error"
-    
+    "page/error/error",
+    "page/addItem/addItem"
   ],
   "window": {
     "navigationBarTextStyle": "black",
